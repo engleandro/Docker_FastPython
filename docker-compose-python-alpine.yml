@@ -1,0 +1,29 @@
+#syntax=docker-compose/docker-compose:3
+#link::https://docs.docker.com/compose/compose-file/compose-file-v3/
+
+version: "3"
+
+services:
+  python:
+    image: python:alpine
+    container_name: fastpy
+    tty: true
+    build:
+      context: .
+      dockerfile: dockerfile
+    env_file: .env
+    ports:
+      - "8080:80"
+    volumes:
+      - database:/database
+    volumes:
+      - type: volume
+        source: database
+        target: /database
+        volume:
+          nocopy: true
+    #links:
+    #  - "fastpy"
+    command: ["echo", "pyhont is enable!"]
+volumes:
+  database:
