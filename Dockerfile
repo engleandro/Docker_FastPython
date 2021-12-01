@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 #RUN apt-get update && apt-get install -y tini
 #RUN apt update
 #RUN apt install python3-dev python3-pip python3-venv
-COPY ./requirements/requirements requirements
+COPY requirements requirements
 RUN pip install pip --upgrade pip
 RUN pip install --no-cache-dir -r requirements
 
@@ -19,6 +19,9 @@ COPY . .
 VOLUME ./database
 
 CMD ["python", "./your-daemon-or-script.py"]
+
+
+
 
 
 # FROM: <IMAGE>:<VERSION> llok at Docker Hub

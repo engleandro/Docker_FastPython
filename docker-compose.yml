@@ -4,26 +4,20 @@
 version: "3"
 
 services:
-  python:
+
+  fastpy:
     image: python:alpine
-    container_name: fastpy
-    tty: true
     build:
       context: .
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     env_file: .env
-    ports:
-      - "8080:80"
-    volumes:
-      - database:/database
     volumes:
       - type: volume
         source: database
         target: /database
         volume:
           nocopy: true
-    #links:
-    #  - "fastpy"
-    command: ["echo", "pyhont is enable!"]
+    command: ["echo", "Fastpy is enable!"]
+
 volumes:
   database:
